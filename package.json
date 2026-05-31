@@ -2,9 +2,7 @@
   "name": "juni",
   "description": "A clean, academic Ghost theme for economists and data analysts — sage green palette, light/dark mode, data-focused typography.",
   "version": "1.0.0",
-  "engines": {
-    "ghost-api": "v5"
-  },
+  "keywords": ["ghost-theme"],
   "license": "MIT",
   "author": {
     "email": "nzubulidis@gmail.com"

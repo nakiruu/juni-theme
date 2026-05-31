@@ -1,0 +1,53 @@
+<div class="archive-header">
+    <div class="container">
+        {{#is "tag"}}
+            <div class="archive-header__inner">
+                <div class="archive-header__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M2 2h6l8 8-6 6-8-8V2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="archive-header__super">Tag</p>
+                    <h1 class="archive-header__title">{{tag.name}}</h1>
+                    {{#if tag.description}}<p class="archive-header__desc">{{tag.description}}</p>{{/if}}
+                </div>
+                <div class="archive-header__count">
+                    <span class="count-badge">{{tag.count.posts}} posts</span>
+                </div>
+            </div>
+        {{/is}}
+
+        {{#is "author"}}
+            <div class="archive-header__inner">
+                {{#if primary_author.profile_image}}
+                    <img src="{{img_url primary_author.profile_image size="s"}}" alt="{{primary_author.name}}" class="archive-header__avatar">
+                {{/if}}
+                <div>
+                    <p class="archive-header__super">Author</p>
+                    <h1 class="archive-header__title">{{primary_author.name}}</h1>
+                    {{#if primary_author.bio}}<p class="archive-header__desc">{{primary_author.bio}}</p>{{/if}}
+                </div>
+                <div class="archive-header__count">
+                    <span class="count-badge">{{primary_author.count.posts}} posts</span>
+                </div>
+            </div>
+        {{/is}}
+
+        {{#is "index, paged"}}
+            <h1 class="archive-header__title">All Posts</h1>
+        {{/is}}
+    </div>
+</div>
+
+<section class="posts-section">
+    <div class="container">
+        <div class="posts-grid">
+            {{#foreach posts}}
+                {{> "components/post-card"}}
+            {{/foreach}}
+        </div>
+        {{pagination}}
+    </div>
+</section>
