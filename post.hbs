@@ -1,0 +1,181 @@
+{{!< default}}
+
+{{!-- Reading progress bar --}}
+<div class="reading-progress" id="reading-progress" aria-hidden="true">
+    <div class="reading-progress__bar" id="reading-progress-bar"></div>
+</div>
+
+<article class="post-article {{post_class}}">
+
+    {{!-- ===================== POST HEADER ===================== --}}
+    <header class="post-header">
+        <div class="container container--narrow">
+
+            {{#if primary_tag}}
+                <div class="post-header__tags">
+                    <a href="{{primary_tag.url}}" class="post-tag post-tag--link">{{primary_tag.name}}</a>
+                    {{#if featured}}<span class="badge badge--star">★ Featured</span>{{/if}}
+                </div>
+            {{/if}}
+
+            <h1 class="post-header__title">{{#if title}}{{title}}{{else}}Untitled{{/if}}</h1>
+
+            {{#if custom_excerpt}}
+                <p class="post-header__subtitle">{{custom_excerpt}}</p>
+            {{/if}}
+
+            <div class="post-header__meta">
+                {{#foreach authors}}
+                    <div class="author-mini">
+                        {{#if profile_image}}
+                            <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="author-mini__avatar">
+                        {{/if}}
+                        <a href="{{url}}" class="author-mini__name">{{name}}</a>
+                    </div>
+                {{/foreach}}
+                <div class="post-header__details">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM D, YYYY"}}</time>
+                    {{#if reading_time}}
+                        <span class="meta-sep" aria-hidden="true">·</span>
+                        <span>{{reading_time}}</span>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="post-stats">
+                {{#if reading_time}}
+                    <div class="post-stats__item">
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+                            <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M5.5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                        {{reading_time}}
+                    </div>
+                    <span class="post-stats__sep" aria-hidden="true">·</span>
+                {{/if}}
+                <div class="post-stats__item">
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+                        <rect x="1" y="1.5" width="9" height="1.2" rx=".6" fill="currentColor"/>
+                        <rect x="1" y="4.5" width="6.5" height="1.2" rx=".6" fill="currentColor"/>
+                        <rect x="1" y="7.5" width="8" height="1.2" rx=".6" fill="currentColor"/>
+                    </svg>
+                    <span class="js-word-count">— words</span>
+                </div>
+            </div>
+
+        </div>
+
+        {{#if feature_image}}
+            <div class="post-feature-image">
+                <div class="container">
+                    <figure>
+                        <img src="{{img_url feature_image size="xl"}}"
+                             srcset="{{img_url feature_image size="m"}} 600w,
+                                     {{img_url feature_image size="l"}} 1000w,
+                                     {{img_url feature_image size="xl"}} 2000w"
+                             sizes="(max-width: 768px) 100vw, 1200px"
+                             alt="{{feature_image_alt}}"
+                             loading="eager"
+                             class="post-feature-image__img">
+                        {{#if feature_image_caption}}
+                            <figcaption class="post-feature-image__caption">{{feature_image_caption}}</figcaption>
+                        {{/if}}
+                    </figure>
+                </div>
+            </div>
+        {{/if}}
+    </header>
+
+    {{!-- ===================== POST BODY ===================== --}}
+    <div class="post-layout">
+        <div class="container">
+            <div class="post-layout__inner">
+
+                <div class="post-content gh-content" id="post-content">
+                    {{content}}
+                </div>
+
+                <aside class="post-toc js-post-toc" aria-label="Table of contents">
+                    <div class="post-toc__inner">
+                        <h4 class="post-toc__title">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                                <rect x="1" y="1.5" width="10" height="1.2" rx=".6" fill="currentColor"/>
+                                <rect x="1" y="5" width="7" height="1.2" rx=".6" fill="currentColor"/>
+                                <rect x="1" y="8.5" width="9" height="1.2" rx=".6" fill="currentColor"/>
+                            </svg>
+                            Contents
+                        </h4>
+                        <nav class="post-toc__nav js-toc-nav" aria-label="Post sections"></nav>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- ===================== POST FOOTER ===================== --}}
+    <footer class="post-footer">
+        <div class="container container--narrow">
+
+            {{#if tags}}
+                <div class="post-footer__tags">
+                    <span class="post-footer__tags-label">Filed under</span>
+                    {{#foreach tags}}
+                        <a href="{{url}}" class="post-tag post-tag--link">{{name}}</a>
+                    {{/foreach}}
+                </div>
+            {{/if}}
+
+            {{#foreach authors}}
+                <div class="author-card">
+                    {{#if profile_image}}
+                        <img src="{{img_url profile_image size="s"}}" alt="{{name}}" class="author-card__avatar">
+                    {{/if}}
+                    <div class="author-card__info">
+                        <p class="author-card__label">Written by</p>
+                        <h3 class="author-card__name"><a href="{{url}}">{{name}}</a></h3>
+                        {{#if bio}}<p class="author-card__bio">{{bio}}</p>{{/if}}
+                        {{#if location}}<p class="author-card__location">{{location}}</p>{{/if}}
+                        {{#if website}}<a href="{{website}}" class="author-card__link" target="_blank" rel="noopener">Website ↗</a>{{/if}}
+                    </div>
+                </div>
+            {{/foreach}}
+
+            {{#unless @member}}
+                <div class="subscribe-cta">
+                    <div class="subscribe-cta__content">
+                        <h3>Get research in your inbox</h3>
+                        <p>Subscribe to be notified when new analysis is published.</p>
+                    </div>
+                    <a href="#/portal/signup" class="btn btn--primary">Subscribe free</a>
+                </div>
+            {{/unless}}
+
+        </div>
+    </footer>
+
+</article>
+
+{{!-- Related posts --}}
+{{#get "posts" filter="tags:[{{primary_tag.slug}}]+id:-{{id}}" limit="3"}}
+    {{#if posts}}
+        <section class="related-posts">
+            <div class="container">
+                <div class="section-label">More on this topic</div>
+                <div class="posts-grid posts-grid--3">
+                    {{#foreach posts}}
+                        {{> "components/post-card"}}
+                    {{/foreach}}
+                </div>
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+
+{{#if @labs.comments}}
+    <section class="comments-section">
+        <div class="container container--narrow">
+            {{comments}}
+        </div>
+    </section>
+{{/if}}

@@ -1,0 +1,38 @@
+{{!< default}}
+
+<article class="post-article page-article {{post_class}}">
+    <header class="post-header">
+        <div class="container container--narrow">
+            <h1 class="post-header__title">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="post-header__subtitle">{{custom_excerpt}}</p>
+            {{/if}}
+        </div>
+
+        {{#if feature_image}}
+            <div class="post-feature-image">
+                <div class="container">
+                    <figure>
+                        <img src="{{img_url feature_image size="xl"}}"
+                             alt="{{feature_image_alt}}"
+                             loading="eager"
+                             class="post-feature-image__img">
+                        {{#if feature_image_caption}}
+                            <figcaption class="post-feature-image__caption">{{feature_image_caption}}</figcaption>
+                        {{/if}}
+                    </figure>
+                </div>
+            </div>
+        {{/if}}
+    </header>
+
+    <div class="post-layout">
+        <div class="container">
+            <div class="post-layout__inner post-layout__inner--page">
+                <div class="post-content gh-content">
+                    {{content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

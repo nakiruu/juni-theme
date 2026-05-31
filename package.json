@@ -1,0 +1,48 @@
+{
+  "name": "juni",
+  "description": "A clean, academic Ghost theme for economists and data analysts — sage green palette, light/dark mode, data-focused typography.",
+  "version": "1.0.0",
+  "engines": {
+    "ghost-api": "v5"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "nzubulidis@gmail.com"
+  },
+  "config": {
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xs": { "width": 150 },
+      "s":  { "width": 300 },
+      "m":  { "width": 600 },
+      "l":  { "width": 1000 },
+      "xl": { "width": 2000 }
+    },
+    "card_assets": true
+  },
+  "custom": {
+    "navigation_layout": {
+      "type": "select",
+      "options": ["Logo on left", "Logo centered"],
+      "default": "Logo on left",
+      "description": "Navigation layout"
+    },
+    "color_scheme": {
+      "type": "select",
+      "options": ["Auto", "Light", "Dark"],
+      "default": "Auto",
+      "description": "Color scheme preference"
+    },
+    "show_reading_progress": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show reading progress bar on posts"
+    },
+    "hero_style": {
+      "type": "select",
+      "options": ["Minimal", "With recent posts feed"],
+      "default": "With recent posts feed",
+      "description": "Homepage hero section style"
+    }
+  }
+}

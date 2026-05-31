@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="{{body_class}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    <link rel="canonical" href="{{canonical_url}}">
+
+    {{!-- Fonts: Inter + Georgia + Fira Code --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{asset 'css/screen.css'}}">
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+<div class="site-wrapper">
+
+    {{!-- ===================== HEADER ===================== --}}
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <div class="site-header__inner">
+
+                <div class="site-header__brand">
+                    <a href="{{@site.url}}" class="site-logo-link">
+                        {{#if @site.logo}}
+                            <img src="{{@site.logo}}" alt="{{@site.title}}" class="site-logo">
+                        {{else}}
+                            <span class="site-logo-text">{{@site.title}}</span>
+                        {{/if}}
+                    </a>
+                    <span class="site-header__tag">research</span>
+                </div>
+
+                <nav class="site-nav" aria-label="Main navigation">
+                    {{navigation}}
+                    {{#unless @member}}
+                        <a href="#/portal/signup" class="btn btn--sm btn--primary">Subscribe</a>
+                    {{/unless}}
+                    {{#if @member}}
+                        <a href="#/portal/account" class="btn btn--sm btn--outline">Account</a>
+                    {{/if}}
+                    <button class="theme-toggle" aria-label="Toggle color scheme" title="Toggle dark mode">
+                        <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13.5 10.5A6.5 6.5 0 015.5 2.5a6.5 6.5 0 108 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </nav>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+            </div>
+        </div>
+        <div class="header-border" aria-hidden="true"></div>
+    </header>
+
+    {{!-- ===================== MOBILE NAV ===================== --}}
+    <div class="mobile-nav" aria-hidden="true" id="mobile-nav">
+        <div class="mobile-nav__inner">
+            {{navigation}}
+            {{#unless @member}}
+                <a href="#/portal/signup" class="btn btn--primary btn--full">Subscribe free</a>
+            {{/unless}}
+        </div>
+    </div>
+
+    {{!-- ===================== MAIN CONTENT ===================== --}}
+    <main id="main-content" class="site-main">
+        {{{body}}}
+    </main>
+
+    {{!-- ===================== FOOTER ===================== --}}
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__inner">
+
+                <div class="site-footer__brand">
+                    <a href="{{@site.url}}" class="site-logo-link">
+                        <span class="site-logo-text">{{@site.title}}</span>
+                    </a>
+                    {{#if @site.description}}
+                        <p class="site-footer__desc">{{@site.description}}</p>
+                    {{/if}}
+                    <div class="footer-badge">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                            <path d="M1 8l2-3 2 1.5 4-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        econometrics &amp; data
+                    </div>
+                </div>
+
+                <div class="site-footer__links">
+                    <div class="footer-link-group">
+                        <h4>Content</h4>
+                        {{navigation type="secondary"}}
+                    </div>
+                    <div class="footer-link-group">
+                        <h4>Site</h4>
+                        <ul>
+                            <li><a href="{{@site.url}}/rss/">RSS Feed</a></li>
+                            <li><a href="#/portal">Membership</a></li>
+                            <li><a href="{{@site.url}}/sitemap.xml">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="site-footer__bottom">
+                <p class="site-footer__copy">
+                    &copy; {{date format="YYYY"}} {{@site.title}}. Built with Ghost.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="{{asset 'js/main.js'}}"></script>
+{{ghost_foot}}
+</body>
+</html>

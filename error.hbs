@@ -1,0 +1,23 @@
+{{!< default}}
+
+<section class="error-page">
+    <div class="container container--narrow">
+        <div class="error-page__inner">
+            <div class="error-page__code">{{statusCode}}</div>
+            <h1 class="error-page__title">{{#if errorMessage}}{{errorMessage}}{{else}}Page not found{{/if}}</h1>
+            <p class="error-page__desc">
+                {{#if statusCode}}
+                    {{#if (eq statusCode 404)}}
+                        The page you're looking for doesn't exist or has been moved.
+                    {{else}}
+                        Something went wrong. Please try again.
+                    {{/if}}
+                {{/if}}
+            </p>
+            <div class="error-page__actions">
+                <a href="{{@site.url}}" class="btn btn--primary">Go home</a>
+                <a href="javascript:history.back()" class="btn btn--outline">Go back</a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,159 @@
+{{!< default}}
+
+{{!-- ===================== HOME HERO ===================== --}}
+<section class="home-hero">
+    <div class="container">
+        <div class="home-hero__inner">
+
+            <div class="home-hero__content">
+                <div class="home-hero__eyebrow">
+                    <span class="badge badge--accent">
+                        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" aria-hidden="true">
+                            <circle cx="3.5" cy="3.5" r="3" fill="currentColor"/>
+                            <circle cx="3.5" cy="3.5" r="3" fill="currentColor" class="pulse-ring"/>
+                        </svg>
+                        Research &amp; Analysis
+                    </span>
+                    <span class="hero-date js-today-date"></span>
+                </div>
+
+                <h1 class="home-hero__title">{{@site.title}}</h1>
+                <p class="home-hero__desc">{{@site.description}}</p>
+
+                <div class="home-hero__cta">
+                    <a href="#posts" class="btn btn--primary">Read Latest</a>
+                    {{#unless @member}}
+                        <a href="#/portal/signup" class="btn btn--outline">
+                            Subscribe
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    {{/unless}}
+                </div>
+
+                <div class="home-hero__meta">
+                    <div class="meta-chip">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <path d="M1 9.5L3.5 6l2 2 5-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Econometrics
+                    </div>
+                    <div class="meta-chip">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <rect x="1" y="1" width="4" height="10" rx=".5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                            <rect x="7" y="4" width="4" height="7" rx=".5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                        Data Analysis
+                    </div>
+                    <div class="meta-chip">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M6 3v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                        Evidence-based
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-hero__aside">
+                {{#get "posts" limit="5" order="published_at desc"}}
+                    <div class="hero-feed">
+                        <div class="hero-feed__header">
+                            <span class="hero-feed__label">Latest Posts</span>
+                            <span class="badge badge--sm">↑ new</span>
+                        </div>
+                        <div class="hero-feed__list">
+                            {{#foreach posts}}
+                                <a href="{{url}}" class="hero-feed-item">
+                                    <div class="hero-feed-item__num">{{add @index 1}}</div>
+                                    <div class="hero-feed-item__body">
+                                        <span class="hero-feed-item__title">{{title}}</span>
+                                        <div class="hero-feed-item__meta">
+                                            {{#if primary_tag}}<span class="hero-feed-item__tag">{{primary_tag.name}}</span>{{/if}}
+                                            <span class="hero-feed-item__date">{{date format="MMM D, YYYY"}}</span>
+                                            <span>{{reading_time}}</span>
+                                        </div>
+                                    </div>
+                                    <svg class="hero-feed-item__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                                        <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            {{/foreach}}
+                        </div>
+                        <div class="hero-feed__footer">
+                            <a href="{{@site.url}}/" class="hero-feed__all">All posts →</a>
+                        </div>
+                    </div>
+                {{/get}}
+            </div>
+
+        </div>
+    </div>
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+</section>
+
+{{!-- ===================== FEATURED ===================== --}}
+{{#get "posts" filter="featured:true" limit="1"}}
+    {{#foreach posts}}
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-label">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                        <path d="M6 1l1.3 3.9H11L7.85 6.9l1.3 3.85L6 8.7l-3.15 2.05 1.3-3.85L1 4.9h3.7L6 1z" fill="currentColor"/>
+                    </svg>
+                    Featured
+                </div>
+                <a href="{{url}}" class="featured-card">
+                    {{#if feature_image}}
+                        <div class="featured-card__image">
+                            <img src="{{img_url feature_image size="l"}}" alt="{{feature_image_alt}}" loading="eager">
+                        </div>
+                    {{/if}}
+                    <div class="featured-card__content">
+                        {{#if primary_tag}}<span class="post-tag">{{primary_tag.name}}</span>{{/if}}
+                        <h2 class="featured-card__title">{{title}}</h2>
+                        <p class="featured-card__excerpt">{{excerpt words="35"}}</p>
+                        <div class="featured-card__meta">
+                            <div class="author-mini">
+                                {{#if primary_author.profile_image}}
+                                    <img src="{{img_url primary_author.profile_image size="xs"}}" alt="{{primary_author.name}}" class="author-mini__avatar">
+                                {{/if}}
+                                <span>{{primary_author.name}}</span>
+                            </div>
+                            <span>{{date format="MMM D, YYYY"}}</span>
+                            <span>{{reading_time}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    {{/foreach}}
+{{/get}}
+
+{{!-- ===================== POST GRID ===================== --}}
+<section class="posts-section" id="posts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest Analysis</h2>
+            <div class="section-controls">
+                <div class="tag-filter" id="tag-filter">
+                    <button class="tag-filter__btn is-active" data-tag="all">All</button>
+                    {{#get "tags" limit="6" order="count.posts desc"}}
+                        {{#foreach tags}}
+                            <button class="tag-filter__btn" data-tag="{{slug}}">{{name}}</button>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </div>
+
+        <div class="posts-grid" id="posts-grid">
+            {{#foreach posts}}
+                {{> "components/post-card"}}
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+    </div>
+</section>
