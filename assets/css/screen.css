@@ -358,6 +358,14 @@ html.dark .badge--star,
   font-family: var(--font-sans);
 }
 
+.site-logo-text__byline {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted-fg);
+  white-space: nowrap;
+}
+
 .site-header__tag {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -386,7 +394,7 @@ html.dark .badge--star,
 
 .site-nav .nav-item a {
   display: block;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.9rem;
   font-size: 0.875rem;
   font-weight: 450;
   color: var(--muted-fg);
