@@ -1436,6 +1436,23 @@ html.dark .icon-moon,
   margin: 1.5em 0;
 }
 
+/* Required wide/full bleed card widths */
+.kg-width-wide {
+  position: relative;
+  width: 85vw;
+  min-width: 100%;
+  margin: 1.5em calc(50% - 42.5vw);
+}
+
+.kg-width-full {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 .gh-content .kg-image-card img {
   margin-inline: auto;
 }
